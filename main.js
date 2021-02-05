@@ -1,6 +1,6 @@
 const send = require('gmail-send')({
   user: 'nostime.project@gmail.com',
-  pass: 'Nos2020ProjectAccount',
+  pass: '',
   to: 's1821094@s.do-johodai.ac.jp',
   subject: 'test'
 });
