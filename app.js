@@ -31,16 +31,16 @@ app.post('/mailserver/', (req, res) => {
   });
   send({ html: html })
     .then(() => {
-      res.send(JSON.parse({
+      res.json({
         status: 200,
         message: 'done'
-      }));
+      });
     })
     .catch(err => {
-      res.send(JSON.parse({
+      res.json({
         status: 400,
         message: err
-      }));
+      });
     });
 });
 
