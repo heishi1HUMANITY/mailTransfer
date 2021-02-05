@@ -5,8 +5,9 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.post('/mailserver/', (req, res => {
+app.post('/mailserver/', (req, res) => {
   const body = req.body;
+  console.log(body);
 
   let html = `
     <p>${body.user[0]}様</p><br />
@@ -28,5 +29,19 @@ app.post('/mailserver/', (req, res => {
     to: body.mail,
     subject: '購入完了のお知らせ'
   });
-  send({ html: html });
-}));
+  send({ html: html })
+    .then(() => {
+      res.send(JSON.parse({
+        status: 200,
+        message: 'done'
+      }));
+    })
+    .catch(err => {
+      res.send(JSON.parse({
+        status: 400,
+        message: err
+      }));
+    });
+});
+
+app.listen(3000, () => console.log(':3000'));
