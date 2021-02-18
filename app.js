@@ -24,8 +24,8 @@ app.post('/mailserver/', (req, res) => {
   `;
 
   const send = gmailSend({
-    user: 'nostime.project@gmail.com',
-    pass: '',
+    user: process.env.MAIL_TRANSFER_USER,
+    pass: process.env.MAIL_TRANSFER_PASSWORD,
     to: body.mail,
     subject: '購入完了のお知らせ'
   });
